@@ -17,7 +17,7 @@
 
     <string name="icon_gift">a</string>
     <string name="icon_wish">d</string>
-    <string name="launch">Wish a gift.</string>
+    <string name="launch">Pick a gift.</string>
     <string name="saved_title">Your wish saved.</string>
 
     <!-- -
@@ -27,6 +27,8 @@
     <string name="interstitial_ad_unit_id">ca-app-pub-1747624063670681/7409481863</string>
     <string name="banner_ad_unit_id">ca-app-pub-1747624063670681/2979282266</string>
 
+    <string name="inmobi_banner_ad">11c044fde4514ac8bf8cbeddf7a336d3</string>
+    <string name="inmobi_interstitial_ad">6f8be5cb77934d539e7de697766c3fac</string>
     <!--<string name="interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>-->
 

@@ -18,5 +18,6 @@ public class MyApplication extends Application{
         mContext = getApplicationContext();
 
         FontIconTypefaceHolder.init(getAssets(), "icons.ttf");
+
     }
 }

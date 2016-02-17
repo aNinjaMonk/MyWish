@@ -1,6 +1,8 @@
 package com.valentinewish.activities;
 
 import com.aspiration.photoviewer.R;
+import com.inmobi.commons.InMobi;
+import com.inmobi.monetization.IMInterstitial;
 import com.valentinewish.listener.OnSwipeTouchListener;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -46,6 +48,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private InterstitialAd mInterstitialAd;
+    private IMInterstitial imInterstitial;
     int[] slides = {R.drawable.image2,R.drawable.image1,R.drawable.image3,
             R.drawable.image4,R.drawable.image5,R.drawable.image6,
             R.drawable.image7,R.drawable.image8,R.drawable.image9,
@@ -83,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
         zoom_in = AnimationUtils.loadAnimation(this,R.anim.zoom_in);
         zoom_out = AnimationUtils.loadAnimation(this,R.anim.zoom_out);
 
-        setupAds();
         SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
         currentSlide = sharedPreferences.getInt(SLIDE_NO,0);
 
@@ -122,6 +124,12 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        //setupAds();
+        InMobi.initialize(this, getResources().getString(R.string.inmobi_banner_ad));
+
+        //InMobi.setLogLevel(InMobi.LOG_LEVEL.DEBUG);
+        //setupAds();
     }
 
     @Override
@@ -139,15 +147,19 @@ public class MainActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
+
     private void setupAds(){
         //Interstitial Ads
         mInterstitialAd = newInterstitialAd();
         loadInterstitial();
 
+        imInterstitial = new IMInterstitial(this,getResources().getString(R.string.inmobi_interstitial_ad));
+        imInterstitial.loadInterstitial();
+
         //Banner ads
-        AdView mAdView = (AdView) findViewById(R.id.adView);
+        /*AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        mAdView.loadAd(adRequest);*/
     }
 
     private void changeSlide(boolean isNext){
@@ -173,13 +185,6 @@ public class MainActivity extends AppCompatActivity {
             sw.setOutAnimation(out_left);
         }
         sw.setImageResource(slides[currentSlide]);
-
-        //Show big ad on every 3rd slide...
-        if(currentSlide%3 == 2 ){
-            showInterstitial();
-        }
-
-        // Show interstitial ads within the photos.
     }
 
     private InterstitialAd newInterstitialAd() {
@@ -219,6 +224,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void downloadClick(View view){
+        /*if (imInterstitial.getState() ==IMInterstitial.State.READY)
+            imInterstitial.show();*/
+
         Bitmap bm = BitmapFactory.decodeResource( getResources(), slides[currentSlide]);
         String extStorageDirectory = Environment.getExternalStorageDirectory().toString() + "/" + getResources().getString(R.string.app_name);
         File extDirectory = new File(extStorageDirectory);

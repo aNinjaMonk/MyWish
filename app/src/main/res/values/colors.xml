@@ -16,6 +16,6 @@
 
     <color name="icons">#000000</color>
     <color name="icons_back">#e6aaaa</color>
-    <color name="launch_back">#e6aaaa</color>
+    <color name="launch_back">#f5c8c8</color>
 
 </resources>
